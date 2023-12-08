@@ -1,0 +1,14 @@
+block-list-secret-scan: []
+branch: main
+compact: true
+directory:
+- ./
+download-external-modules: false
+evaluate-variables: true
+external-modules-download-path: .external_modules
+framework:
+- all
+mask: []
+quiet: true
+secrets-scan-file-type: []
+summary-position: top
