@@ -78,34 +78,9 @@ output "ecs_security_group_id" {
   value = module.server_sg.security_group_id
 }
 
-// EFS access points
-output "efs_access_points" {
-  value = module.efs.access_points
-}
-
-// EFS ID
-output "efs_id" {
-  value = module.efs.id
-}
-
-// EFS mount targets
-output "efs_mount_targets" {
-  value = module.efs.mount_targets
-}
-
-// EFS disk security group's ID
-output "efs_security_group_id" {
-  value = module.efs_sg.security_group_id
-}
-
 // AmazonMQ KMS ARN
 output "kms_amazonmq_arn" {
   value = module.amazonmq_kms.key_arn
-}
-
-// EFS KMS ARN
-output "kms_efs_arn" {
-  value = module.efs_kms.key_arn
 }
 
 // Cloudwatch Logs KMS ARN

@@ -13,37 +13,6 @@ module "amazonmq_kms" {
   }
 }
 
-module "efs_kms" {
-  source  = "terraform-aws-modules/kms/aws"
-  version = "~> 2.1.0"
-
-  aliases                 = ["alias/${local.name_prefix}-efs"]
-  deletion_window_in_days = var.kms_deletion_window_in_days
-  description             = "A key used for encrypting Martini EFS file system"
-
-  key_statements = [{
-    actions = [
-      "kms:CreateGrant",
-      "kms:DescribeKey",
-      "kms:Encrypt",
-      "kms:Decrypt",
-      "kms:ReEncrypt*",
-      "kms:GenerateDataKey*",
-    ]
-    effect    = "Allow"
-    resources = ["*"]
-
-    principals = [{
-      identifiers = ["elasticfilesystem.amazonaws.com"]
-      type        = "Service"
-    }]
-  }]
-
-  tags = {
-    Service = "EFS"
-  }
-}
-
 module "logs_kms" {
   source  = "terraform-aws-modules/kms/aws"
   version = "~> 2.1.0"

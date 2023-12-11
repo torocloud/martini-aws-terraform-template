@@ -32,6 +32,7 @@ module "rds" {
   identifier = "${local.name_prefix}-rds"
 
   allocated_storage         = var.rds_allocated_storage
+  ca_cert_identifier        = "rds-ca-rsa2048-g1"
   create_db_option_group    = var.enable_rds
   create_db_instance        = var.enable_rds
   create_db_parameter_group = var.enable_rds

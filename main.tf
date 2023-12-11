@@ -26,6 +26,4 @@ locals {
   ecs_cluster_name       = "${local.name_prefix}Cluster"
   ecs_container_port     = 8080
   ecs_service_name       = "${local.name_prefix}-service"
-
-  martini_volumes = ["martini-data", "db-pool-data", "packages-data"]
 }

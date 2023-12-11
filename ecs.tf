@@ -134,21 +134,6 @@ resource "aws_ecs_task_definition" "martini" {
           valueFrom = aws_ssm_parameter.license.arn
         }
       ]
-      mountPoints = [
-        {
-          containerPath = "/data/data"
-          sourceVolume  = "martini-data"
-          readOnly      = false
-          }, {
-          containerPath = "/data/conf/db-pool"
-          sourceVolume  = "db-pool-data"
-          readOnly      = false
-          }, {
-          containerPath = "/data/packages"
-          sourceVolume  = "packages-data"
-          readOnly      = false
-        }
-      ]
       logConfiguration = {
         logDriver = "awslogs"
         options = {
@@ -165,25 +150,6 @@ resource "aws_ecs_task_definition" "martini" {
       ]
     }
   ])
-
-  dynamic "volume" {
-    for_each = local.martini_volumes
-
-    content {
-      name = volume.value
-
-      efs_volume_configuration {
-        file_system_id     = module.efs.id
-        root_directory     = "/"
-        transit_encryption = "ENABLED"
-
-        authorization_config {
-          access_point_id = module.efs.access_points[volume.value].id
-          iam             = "ENABLED"
-        }
-      }
-    }
-  }
 }
 
 resource "aws_ecs_cluster" "martini" {
