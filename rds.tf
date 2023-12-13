@@ -43,6 +43,7 @@ module "rds" {
   instance_class            = var.rds_instance_class
   kms_key_id                = module.rds_kms.key_arn
   major_engine_version      = var.rds_engine_version
+  skip_final_snapshot       = true
 
   subnet_ids             = module.vpc.private_subnets
   vpc_security_group_ids = [module.rds_sg.security_group_id]
