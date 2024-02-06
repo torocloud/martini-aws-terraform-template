@@ -26,4 +26,7 @@ locals {
   ecs_cluster_name       = "${local.name_prefix}Cluster"
   ecs_container_port     = 8080
   ecs_service_name       = "${local.name_prefix}-service"
+
+  jdbc_mysql_download_url = "https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/${var.martini_workspace_mysql_driver_version}/mysql-connector-j-${var.martini_workspace_mysql_driver_version}.jar"
+  jdbc_postgres_download_url = "https://github.com/pgjdbc/pgjdbc/releases/download/REL${var.martini_workspace_postgres_driver_version}/postgresql-${var.martini_workspace_postgres_driver_version}.jar"
 }

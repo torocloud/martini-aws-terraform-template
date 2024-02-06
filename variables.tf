@@ -30,6 +30,18 @@ variable "martini_workspace_memory" {
   type        = number
 }
 
+variable "martini_workspace_mysql_driver_version" {
+  description = "Version of the MySQL driver that should be automatically installed on Martini"
+  type = string
+  default = "8.3.0"
+}
+
+variable "martini_workspace_postgres_driver_version" {
+  description = "Version of the PostgreSQL driver that should be automatically installed on Martini"
+  type = string
+  default = "42.7.1"
+}
+
 // ECS configuration
 variable "ecs_asg_instance_ami_filter" {
   description = "Name filter for the ECS ASG AMI. Valid only if `ecs_capacity_provider_type` is set to `EC2`"

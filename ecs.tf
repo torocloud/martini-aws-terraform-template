@@ -116,9 +116,35 @@ resource "aws_ecs_task_definition" "martini" {
 
   container_definitions = jsonencode([
     {
+      name = "bash"
+      image = "bash:5"
+      memoryReservation = 256
+      essential = false
+      command = [
+        "-c",
+        "wget ${local.jdbc_postgres_download_url} -P /lib-ext/ && wget ${local.jdbc_mysql_download_url} -P /lib-ext/"
+      ]
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = aws_cloudwatch_log_group.logs.name
+          "awslogs-region"        = data.aws_region.current.id
+          "awslogs-stream-prefix" = "${local.name_prefix}-bash"
+        }
+      }
+      mountPoints = [{
+        sourceVolume = "lib-ext"
+        containerPath = "/lib-ext"
+      }]
+    }, {
+      dependsOn = [{
+        containerName = "bash"
+        condition = "COMPLETE"
+      }]
+
       name              = local.ecs_service_name
       image             = var.ecs_docker_image_url
-      memoryReservation = var.martini_workspace_memory
+      memoryReservation = var.martini_workspace_memory - 256
       essential         = true
       privileged        = false
       command           = []
@@ -142,6 +168,10 @@ resource "aws_ecs_task_definition" "martini" {
           "awslogs-stream-prefix" = local.name_prefix
         }
       }
+      mountPoints = [{
+        sourceVolume = "lib-ext"
+        containerPath = "/data/lib/ext"
+      }]
       portMappings = [
         {
           containerPort = local.ecs_container_port
@@ -150,6 +180,10 @@ resource "aws_ecs_task_definition" "martini" {
       ]
     }
   ])
+
+  volume {
+    name = "lib-ext"
+  }
 }
 
 resource "aws_ecs_cluster" "martini" {

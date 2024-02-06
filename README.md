@@ -3,6 +3,8 @@
 The repository contains a Terraform template to create a complete infrastructure running Martini Runtime in the cloud 
 on AWS ECS along with optional dependencies such as an RDS database, an AmazonMQ broker or an SQS broker.
 
+**Note:** This template downloads required JDBC drivers automatically, but Martini doesn't embed the drivers by default
+
 # Requirements
 
 The template requires an installed Terraform with version 1.6.0 or higher. In order to install the Terraform, please 
