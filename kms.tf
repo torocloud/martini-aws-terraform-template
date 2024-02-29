@@ -1,6 +1,6 @@
 module "amazonmq_kms" {
   source  = "terraform-aws-modules/kms/aws"
-  version = "~> 2.1.0"
+  version = "~> 2.2.0"
 
   create = var.enable_amazonmq
 
@@ -15,7 +15,7 @@ module "amazonmq_kms" {
 
 module "logs_kms" {
   source  = "terraform-aws-modules/kms/aws"
-  version = "~> 2.1.0"
+  version = "~> 2.2.0"
 
   aliases                 = ["alias/${local.name_prefix}-logs"]
   deletion_window_in_days = var.kms_deletion_window_in_days
@@ -45,7 +45,7 @@ module "logs_kms" {
 
 module "rds_kms" {
   source  = "terraform-aws-modules/kms/aws"
-  version = "~> 2.1.0"
+  version = "~> 2.2.0"
 
   create = var.enable_rds
 
@@ -60,7 +60,7 @@ module "rds_kms" {
 
 module "sqs_kms" {
   source  = "terraform-aws-modules/kms/aws"
-  version = "~> 2.1.0"
+  version = "~> 2.2.0"
 
   create = var.enable_sqs
 
@@ -89,7 +89,7 @@ module "sqs_kms" {
 
 module "ssm_kms" {
   source  = "terraform-aws-modules/kms/aws"
-  version = "~> 2.1.0"
+  version = "~> 2.2.0"
 
   aliases                 = ["alias/${local.name_prefix}-ssm"]
   deletion_window_in_days = var.kms_deletion_window_in_days
