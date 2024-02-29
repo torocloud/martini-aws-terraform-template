@@ -27,7 +27,7 @@ module "rds_sg" {
 
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "~> 6.3.0"
+  version = "~> 6.4.0"
 
   identifier = "${local.name_prefix}-rds"
 
