@@ -35,7 +35,7 @@ module "amazonmq_sg" {
 
 module "amazonmq" {
   source  = "cloudposse/mq-broker/aws"
-  version = "~> 3.1.0"
+  version = "~> 3.4.0"
 
   enabled = var.enable_amazonmq
 
