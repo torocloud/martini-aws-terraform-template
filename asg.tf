@@ -10,7 +10,7 @@ data "aws_ami" "asg_ami" {
 
 module "ecs_asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
-  version = "~> 7.3.1"
+  version = "~> 7.4.0"
 
   create = !local.is_ecs_fargate
 
