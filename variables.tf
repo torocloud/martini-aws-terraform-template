@@ -4,13 +4,19 @@ variable "aws_region" {
   type        = string
 }
 
+variable "name_suffix" {
+  description = "Suffix to add to the resources' names"
+  default     = ""
+  type        = string
+}
+
 variable "tags" {
   description = "Common tags for components created in the infrastructure"
   type        = map(string)
 
   default = {
     Application = "Martini"
-    Repository  = "https://github.com/torocloud/martini-terraform-template"
+    Repository  = "https://github.com/torocloud/martini-aws-terraform-template"
   }
 }
 
@@ -32,14 +38,14 @@ variable "martini_workspace_memory" {
 
 variable "martini_workspace_mysql_driver_version" {
   description = "Version of the MySQL driver that should be automatically installed on Martini"
-  type = string
-  default = "8.3.0"
+  type        = string
+  default     = "8.3.0"
 }
 
 variable "martini_workspace_postgres_driver_version" {
   description = "Version of the PostgreSQL driver that should be automatically installed on Martini"
-  type = string
-  default = "42.7.1"
+  type        = string
+  default     = "42.7.1"
 }
 
 // ECS configuration

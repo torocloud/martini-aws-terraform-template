@@ -21,7 +21,7 @@ provider "aws" {
 
 locals {
   is_ecs_fargate         = var.ecs_capacity_provider_type == "FARGATE"
-  name_prefix            = "${terraform.workspace}-martini"
+  name_prefix            = "${terraform.workspace}-martini${var.name_suffix}"
   parameter_store_prefix = "/${terraform.workspace}/MARTINI"
   ecs_cluster_name       = "${local.name_prefix}Cluster"
   ecs_container_port     = 8080
