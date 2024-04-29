@@ -1,6 +1,6 @@
 module "sqs" {
   source  = "terraform-aws-modules/sqs/aws"
-  version = "~> 4.1.0"
+  version = "~> 4.2.0"
 
   create = var.enable_sqs
 
